@@ -3,29 +3,33 @@
 	min-width: 320px;
 	background-color: #ECE9E4;
 }
+#messages-wrapper form{
+	display: none;
+}
+#messages-wrapper .message-wrapper form{
+	text-align: left;
+
+}
 #messages-wrapper p{
 	text-align: left;
 }
 
 #messages-wrapper > div.message-wrapper{
 	border-bottom: 1px solid #A7A29C;
+	clear: both;
 }
 
 #messages-wrapper > div.message-wrapper:last-child{
 	border-bottom: none;
 }
 
-
-
-#messages-wrapper .message-wrapper{
+#messages-wrapper > div.message-wrapper div.message:last-child{
 	margin: 20px 0 0 10%;
-	/*background-color: #A7A29C;*/
-	padding: 10px 5px;
 }
+
 
 #messages-wrapper > .message-wrapper{
 	margin: 20px 0 0 10px;
-	/*background-color: #A7A29C;*/
 	padding: 10px 5px;
 }
 

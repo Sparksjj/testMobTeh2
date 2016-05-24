@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -24,30 +24,15 @@
     <div class="container" ng-controller="MainController" id="messages-wrapper">
       <h1 id="title">{{ title }}</h1>
 
-      <div class="message-wrapper" ng-repeat="mess in messages">
+      <new-message></new-message>
 
-        <div class="container message-head">
-          <img ng-src="{{users[mess.userId].avatar}}" alt="avatar" class="img-circle pull-left">
-          <div class="user-info">
-            <span class="name" ng-bind="users[mess.userId].name"></span>
-            <span class="email" ng-bind="users[mess.userId].email"></span>
-          </div>
-        </div>
-
-        <div class="message text-center">
-          <h4 ng-bind="mess.title">Заголовок</h4>
-          <p ng-bind="mess.mess">
-          Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала Тру ла ла Тру лала 
-          </p>
-        </div>
-
-        <div class="message-controll text-right">
-          <button type="button" class="btn btn-default">Ответить</button>
-        </div>
+      <div class="message-wrapper" ng-repeat="mess in messages | orderBy: messages : !reverse">
+        
+        <message message="mess" users="users" answers="answers" admin="isAdmin()"></message>
 
       </div>
 
-      </div>
+    </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins)   <script src="js/angular.min.js"></script>-->
@@ -65,5 +50,11 @@
 
     <!-- Controllers -->
     <script src="js/controllers/MainController.js"></script>
+
+    <!-- Directives -->
+    <script src="js/directives/message.js"></script>
+    <script src="js/directives/newMessage.js"></script>
+    
+
   </body>
 </html>
