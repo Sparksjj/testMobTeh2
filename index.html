@@ -17,20 +17,21 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="css/main.css" rel="stylesheet">
-
+    <script src="node_modules/angular-utils-pagination/dirPagination.js"></script>
   </head>
   <body ng-app="myApp">
 
     <div class="container" ng-controller="MainController" id="messages-wrapper">
       <h1 id="title">{{ title }}</h1>
-
+<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
       <new-message></new-message>
 
-      <div class="message-wrapper" ng-repeat="mess in messages | orderBy: messages : !reverse">
+      <div class="message-wrapper" dir-paginate="mess in messages | orderBy: messages : !reverse | itemsPerPage: 10">
         
         <message message="mess" users="users" answers="answers" admin="isAdmin()"></message>
 
       </div>
+      <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
 
     </div>
 

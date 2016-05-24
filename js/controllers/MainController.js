@@ -1,5 +1,5 @@
 app.controller('MainController', ('$scope', function($scope, $http) { 
-  $scope.title = 'Гостевая книга'; 
+  $scope.title = 'Р“РѕСЃС‚РµРІР°СЏ РєРЅРёРіР°'; 
   $scope.newMessageForm = {
   	title: "",
   	message: ""
@@ -26,20 +26,31 @@ app.controller('MainController', ('$scope', function($scope, $http) {
 
 
   $scope.sendNewMessage = function($event){
-  	console.log($scope.newMessageForm.message.length);
+  	var button = $event.target;
+    var form = $(button).parent();
+    var titleForm = form.find("div").eq(0);
+    var messageForm = form.find("div").eq(1);
+
   	if ($scope.newMessageForm.title.length < 3) {
-  		return;
+  		titleForm.addClass("has-error");
   	}else{
-
+      titleForm.removeClass("has-error");
   	};
 
-  	if ($scope.newMessageForm.message < 10) {
-  		return;
+  	if ($scope.newMessageForm.message.length < 10) {
+  		messageForm.addClass("has-error");
   	}else{
-
+      messageForm.removeClass("has-error");
   	};
-  	  $http.post('easy-serv.php', {"id": $scope.messagesLength, "userId": 0, "title": $scope.newMessageForm.title, "mess": $scope.newMessageForm.message}).success(function(data, status, headers, config){
+    if (titleForm.hasClass("has-error") || messageForm.hasClass("has-error")) {
+      return;
+    }
+
+  	$http.post('easy-serv.php', {"id": $scope.messagesLength, "userId": 0, "title": $scope.newMessageForm.title, "mess": $scope.newMessageForm.message}).success(function(data, status, headers, config){
   		$scope.messages = data;
+      $scope.newMessageForm.title = "";
+      $scope.newMessageForm.message = "";
+      form.slideToggle(200);
   	})
   }
 
