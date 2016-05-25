@@ -1,4 +1,4 @@
-<div class="container message-head">
+<div class="container message-head" data-user-id="{{user.id}}">
   <img ng-src="{{user.avatar}}" alt="avatar" class="img-circle pull-left">
   <div class="user-message">
     <span class="name" ng-bind="user.name"></span>
@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="message text-center">
+<div class="message text-center" data-message-id="{{mess.id}}">
   <h4 ng-bind="mess.title"></h4>
   <p ng-bind="mess.mess">
   </p>
@@ -22,7 +22,7 @@
       <label for="message">Сообщение</label>
       <textarea class="form-control" rows="3" id="message" name="message"></textarea>
     </div>
-    <button type="submit" class="btn btn-default">Отправить</button>
+    <button type="submit" class="btn btn-default" ng-click="sendNewMessage($event, 'new-answer')">Отправить</button>
   </form>
   <button type="button" class="btn btn-default" ng-click="showForm($event)">Ответить</button>
 

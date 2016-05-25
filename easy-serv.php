@@ -2,7 +2,7 @@
 $answerJson = file_get_contents('php://input');
 $answer = json_decode($answerJson, true);
  
-if(isset($answer['title']) && isset($answer['mess']))
+if(isset($answer['title']) && isset($answer['mess']) && !isset($answer['messId']))
 {
 	$file = 'data/messages.json';
     $messages = file_get_contents($file);
@@ -14,8 +14,15 @@ if(isset($answer['title']) && isset($answer['mess']))
     /*echo $answerJson;*/
  
 }
-else
+else if(isset($answer['messId']))
 {  
-    echo "не верные данные aasss";
+    $file = 'data/answers.json';
+    $answers = file_get_contents($file);
+    $sms = ','.$answerJson.']';
+    $answers = substr($answers, 0, -1).$sms;
+    echo $answers;
+    file_put_contents($file, $answers);
 }
+
+
 ?>
