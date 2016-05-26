@@ -3,7 +3,7 @@ app.directive('message', function() {
 
     restrict: 'E', 
     scope: true, 
-    templateUrl: 'js/directives/message.html',
+    templateUrl: 'js/guestBook/layouts/message.html',
 
     link: function($scope, element, attr){
     	$scope.user = findUser();

@@ -1,11 +1,12 @@
-app.directive('newMessage', function() { 
+app.directive('modalWindow', function() { 
   return { 
 
     restrict: 'E', 
     scope: true, 
-    templateUrl: 'js/directives/newMessage.html',
+    templateUrl: 'js/autorization/layouts/modalWindow.html',
 
     link: function($scope, element, attr){
+    	
   	}
 
   }; 

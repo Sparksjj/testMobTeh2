@@ -35,5 +35,4 @@ if(isset($answer['title']) && isset($answer['mess']) && !isset($answer['messId']
     echo $answers; die();
 }
 
-
 ?>
