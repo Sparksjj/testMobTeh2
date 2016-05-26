@@ -26,45 +26,46 @@ app.controller('appCtrl', ['$scope', '$location', '$userProvider',
 
 
  
-app.controller('loginCtrl', ['$scope', 'authorizationFactory', '$location', 
-function($scope, authorizationFactory, $location){
-  
+app.controller('loginCtrl', ['$scope', 'authorizationFactory',  
+function($scope, authorizationFactory){
+
   $scope.loginClick = function($event) {
-
-    if (authorizationFactory.login($scope.userEmail, $scope.userPassword)) {
-      console.log($scope.userEmail);
-    } else {
-      console.log("о нет"); 
-    }
-
+    authorizationFactory.login($scope.userEmail, $scope.userPassword)
   }
 
-  $scope.logOutClick = authorizationFactory.logOut;
+  $scope.logOutClick = function($event){
+    console.log("logOutClick");
+    authorizationFactory.logOut();    
+  }
+  $scope.isAdmin = authorizationFactory.isAdmin;
+  $scope.isSignedIn = authorizationFactory.isSignedIn;
+  $scope.currentUser = authorizationFactory.currentUser;
 
 }]);
  
 
 app.factory('authorizationFactory',['$userProvider', '$http',
   function($userProvider, $http){
-
+ 
     var login = function(login, pass){
-      $http.get('/easy-serv.php?email='+login+'&password='+pass).success(function(data, status, headers, config){
-      	
-      	console.log();
+
+      $http.get('easy-serv.php?email='+login+'&password='+pass).success(function(data, status, headers, config){
 
         if (data != '') {
           data = JSON.parse(JSON.parse(data));
           if (data.admin) {
-            $userProvider.setUser({login: data.name, email: data.email, roles: [$userProvider.rolesEnum.admin]});
+            $userProvider.setUser({login: data.name, email: data.email, roles: $userProvider.rolesEnum.admin});
           }else{
-            $userProvider.setUser({login: data.name, email: data.email, roles: [$userProvider.rolesEnum.user]});
+            $userProvider.setUser({login: data.name, email: data.email, roles: $userProvider.rolesEnum.user});
           };
-          return true;
+
         }else{
-          return false;
+
         }
         
       })
+ 
+ 
     }
     
     var logOut = function(){
@@ -83,10 +84,21 @@ app.factory('authorizationFactory',['$userProvider', '$http',
       return false;
     }
 
+    var isSignedIn = function(){
+   
+      if(!$.isEmptyObject($userProvider.getUser())){
+        return true;
+      }
+      return false;
+    }
+    var currentUser = $userProvider.getUser();
+
     return {
-      login: login,
-      logOut: logOut,
-      isAdmin: isAdmin
+      login:        login,
+      logOut:       logOut,
+      isAdmin:      isAdmin,
+      isSignedIn:   isSignedIn,
+      currentUser:  currentUser
     }
 
 }]);
@@ -104,7 +116,7 @@ app.factory('$userProvider', function(){
   }
 
   var getUser = function(){
-    return localStorage.currentUser
+    return JSON.parse(localStorage.currentUser)
   }
  
   return {

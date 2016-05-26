@@ -20,43 +20,15 @@
     <script src="node_modules/angular-utils-pagination/dirPagination.js"></script>
     <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
   </head>
+
   <body ng-controller="appCtrl">
 
-  <div ng-view></div>
+    <chek-user ng-controller="loginCtrl"></chek-user>
 
-  <!-- modal-window -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="log-in" ng-controller="loginCtrl">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title text-center">Вход</h4>
-          </div>
-          <div class="modal-body">
-            
-  
-            <form class="form-inline">
-              <div class="form-group">
-                <label class="sr-only" for="exampleInputEmail3">Email</label>
-                <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Email" ng-model="userEmail">
-              </div>
-              <div class="form-group">
-                <label class="sr-only" for="exampleInputPassword3">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" ng-model="userPassword">
-              </div>
-              <button type="submit" class="btn btn-default" ng-click="loginClick(userEmail, userPassword, $event)">Войти</button>
-            </form>
-  
-  
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <button type="button" class="btn btn-primary">Сохранить</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    <div ng-view></div>
 
+    <modal-window></modal-window>
+        
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins)   <script src="js/angular.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   
@@ -76,6 +48,8 @@
     <!-- Directives -->
     <script src="js/directives/message.js"></script>
     <script src="js/directives/newMessage.js"></script>
+    <script src="js/directives/authorizationDirectives/modalWindow.js"></script>
+    <script src="js/directives/authorizationDirectives/chekUser.js"></script>
     
 
   </body>

@@ -7,7 +7,9 @@ app.directive('message', function() {
 
     link: function($scope, element, attr){
     	$scope.user = findUser();
-      $scope.answer = findAnswer();
+      attr.$observe('$scope.message', function(value) {
+          console.log(123);
+      })
 
       function findUser(){
         var user;
@@ -19,15 +21,7 @@ app.directive('message', function() {
         return user;
       };  
           
-    	function findAnswer(){
-    		var answer;
-    		$scope.answers.forEach(function(item){
-    			if (item.messId == $scope.mess.id && !answer){
-    				answer = item;
-    			} 
-    		})
-    		return answer;
-    	};
+
 
   	}
 

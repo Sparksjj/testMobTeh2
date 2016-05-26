@@ -3,7 +3,7 @@ $answerJson = file_get_contents('php://input');
 $answer = json_decode($answerJson, true);
 
 if (isset($_GET['email']) && isset($_GET['password']) && $_GET['email']!="undefined" && $_GET['password']!="undefined") {
-
+	
 	$file = 'data/users.json';
     $users = file_get_contents($file);
     $users = substr($users, 7, -2);

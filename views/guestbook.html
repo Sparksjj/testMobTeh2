@@ -1,6 +1,6 @@
-<div class="container" ng-controller="GuestbookController" id="messages-wrapper">
+<div class="container" id="messages-wrapper">
 
-  <h1 id="title">{{ title }}</h1>
+  <h1 id="title">Гостевая книга</h1>
 
   <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
   
@@ -8,7 +8,7 @@
 
   <div class="message-wrapper" dir-paginate="mess in messages | orderBy: messages : !reverse | itemsPerPage: 10">
         
-    <message message="mess" users="users" answers="answers" admin="isAdmin()"></message>
+    <message></message>
 
   </div>
 

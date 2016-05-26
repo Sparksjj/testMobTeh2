@@ -12,7 +12,7 @@
   </p>
 </div>
 
-<div class="message-controll text-right" ng-if="isAdmin() && !answer">
+<div class="message-controll text-right" ng-if="isAdmin() && !answer(mess)">
   <form method="POST">
     <div class="form-group">
       <label for="title">Заголовок</label>
@@ -28,8 +28,8 @@
 
 </div>
 	
-	<div class="message text-center" ng-if="answer">
-	  <h4 ng-bind="answer.title"></h4>
-	  <p ng-bind="answer.mess">
+	<div class="message text-center" ng-if="answer(mess)">
+	  <h4 ng-bind="answer(mess).title"></h4>
+	  <p ng-bind="answer(mess).mess">
 	  </p>
 	</div>
