@@ -1,5 +1,5 @@
   <!-- modal-window -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="log-in" ng-controller="loginCtrl">
+    <div class="modal fade" tabindex="-1" role="dialog" id="log-in">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -8,17 +8,19 @@
           </div>
 
           <div class="modal-body text-center">            
-  
             <form class="form-inline">
-              <div class="form-group">
-                <label class="sr-only" for="exampleInputEmail3">Email</label>
-                <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Email" ng-model="userEmail">
+            <h4 id="error-message"></h4>
+              <div class="form-group" id="inputEmail">
+                <label class="sr-only" for="inputEmail">Email</label>
+                <input type="text" class="form-control" placeholder="Email" name="email" ng-model="formInfo.email">
               </div>
-              <div class="form-group">
-                <label class="sr-only" for="exampleInputPassword3">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" ng-model="userPassword">
+
+              <div class="form-group" id="inputPassword">
+                <label class="sr-only" for="inputPassword">Пароль</label>
+                <input type="password" class="form-control" placeholder="Password" name="password" ng-model="formInfo.password">
               </div>
-              <button type="submit" class="btn btn-default" ng-click="loginClick(userEmail, userPassword, $event)" data-dismiss="modal">Войти</button>
+
+              <button type="submit" class="btn btn-default" ng-click="loginClick($event, userEmail, userPassword, $event)">Войти</button>
             </form>
 
           </div>

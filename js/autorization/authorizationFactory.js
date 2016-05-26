@@ -1,7 +1,7 @@
-app.factory('authorizationFactory',['$userProvider', '$http',
-  function($userProvider, $http){
- 
-    var login = function(login, pass){
+app.factory('authorizationFactory',['$userProvider', '$http', 'validateSignIn', '$rootScope',
+  function($userProvider, $http, validateSignIn, $rootScope){
+   
+    var login = function(login, pass, $event){
 
       $http.get('easy-serv.php?email='+login+'&password='+pass).success(function(data, status, headers, config){
 
@@ -12,9 +12,11 @@ app.factory('authorizationFactory',['$userProvider', '$http',
           }else{
             $userProvider.setUser({login: data.name, email: data.email, roles: $userProvider.rolesEnum.user});
           };
-
+          $rootScope.$emit('rootScope.signInSuccess');
+          
         }else{
 
+          validateSignIn.chekUserInput($event, '', '', "Неверный логин или пароль")
         }
         
       })

@@ -1,7 +1,7 @@
 app.directive('modalWindow', function() { 
   return { 
 
-    restrict: 'E', 
+    restrict: 'EA', 
     scope: true, 
     templateUrl: 'js/autorization/layouts/modalWindow.html',
 
