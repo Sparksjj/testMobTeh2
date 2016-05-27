@@ -5,16 +5,9 @@ function($scope, authorizationFactory, validateSignIn, $rootScope){
     password: ""
   } 
 
-  $rootScope.$on('rootScope.signInSuccess', function() {
-      validateSignIn.calearData();
 
-      $scope.formInfo = {
-        email: "",
-        password: ""
-      }
-      
-      $('button.close').trigger('click');
-  });
+
+
 
   $scope.loginClick = function($event) {
 
@@ -31,6 +24,22 @@ function($scope, authorizationFactory, validateSignIn, $rootScope){
 
   $scope.isAdmin = authorizationFactory.isAdmin;
   $scope.isSignedIn = authorizationFactory.isSignedIn;
-  $scope.currentUser = authorizationFactory.currentUser;
+  $scope.currentUser = authorizationFactory.currentUser();
+  $scope.sayHi = 'Добро пожаловать ' + $scope.currentUser.email;
+
+/*событие при успешной авторизации*/
+  $rootScope.$on('rootScope.signInSuccess', function() {
+    /*clear error messages and classes*/
+      validateSignIn.calearData();
+
+      $scope.formInfo = {
+        email: "",
+        password: ""
+      }
+      /*clear modal window and add hi message*/
+      $scope.currentUser = authorizationFactory.currentUser();
+      $('button.close').trigger('click');
+      $scope.sayHi = 'Добро пожаловать ' + $scope.currentUser.email;
+  });
 
 }]);

@@ -8,9 +8,9 @@ app.factory('authorizationFactory',['$userProvider', '$http', 'validateSignIn', 
         if (data != '') {
           data = JSON.parse(JSON.parse(data));
           if (data.admin) {
-            $userProvider.setUser({login: data.name, email: data.email, roles: $userProvider.rolesEnum.admin});
+            $userProvider.setUser({id: data.id, login: data.name, email: data.email, roles: $userProvider.rolesEnum.admin});
           }else{
-            $userProvider.setUser({login: data.name, email: data.email, roles: $userProvider.rolesEnum.user});
+            $userProvider.setUser({id: data.id, login: data.name, email: data.email, roles: $userProvider.rolesEnum.user});
           };
           $rootScope.$emit('rootScope.signInSuccess');
           
@@ -47,7 +47,9 @@ app.factory('authorizationFactory',['$userProvider', '$http', 'validateSignIn', 
       }
       return false;
     }
-    var currentUser = $userProvider.getUser();
+    var currentUser = function(){
+      return $userProvider.getUser();
+    }
 
     return {
       login:        login,

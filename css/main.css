@@ -2,6 +2,15 @@
 	margin-top: 20px;
 	min-width: 320px;
 	background-color: #ECE9E4;
+	overflow: hidden;
+	margin-top: 0;
+}
+#chek-user{
+	background-color: #4B5658;
+	padding: 20px 20px 20px 0;
+}
+#chek-user span{
+	color: #fff;
 }
 #messages-wrapper form{
 	display: none;

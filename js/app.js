@@ -11,12 +11,9 @@ var app = angular.module("myApp", ['ngRoute', 'angularUtils.directives.dirPagina
           });
   });
 
-app.controller('appCtrl', ['$scope', '$location', '$userProvider',
-    function($scope, $location, $userProvider) {
-/*
-        $scope.goTo = function(path) {
-            $location.path(path);
-        }
-        
-        angular.extend($scope, $userProvider, true);*/
+app.controller('appCtrl', ['$scope', '$location', '$userProvider', "$http",
+    function($scope, $location, $userProvider, $http) {
+
+
+
     }]);

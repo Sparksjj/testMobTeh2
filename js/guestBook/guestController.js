@@ -1,19 +1,59 @@
 app.controller('GuestbookController', ['$scope', 'authorizationFactory', '$http',"getRequests", "postRequests","validateForm",
 	function($scope, authorizationFactory, $http, getRequests, postRequests, validateForm) { 
   
-  getRequests.getUsers.success(function(data){
-    $scope.users = data;
-  })
+  $scope.users =[];
+  $scope.messages =[];
+  $scope.answers =[];
+  $scope.timestamp = {
+    messages: 0,
+    answers: 0
+  }
 
-  getRequests.getMessages.success(function(data){
-  	$scope.messages = data;
-  })
+getRequests.getUsers().then(function(responce){
+      $scope.users = responce.data;
+    }, function(){
+      //do sms an error
+});  
 
-  getRequests.getAnswers.success(function(data){
-    $scope.answers = data;
-  })
+/*проверяем метку времени на сервере, если не совпадает => файл изменен обновляем*/
+$scope.chekMessages = function(){
+  getRequests.getMessages($scope.timestamp.messages).then(function(responce){
+    /*север периодически отдает текст ошибки о таймауте запросса*/
+    try{    
+      $scope.messages = JSON.parse(responce.data.slice(0, -10)); 
+      $scope.timestamp.messages = responce.data.substr(-10);
+      $scope.chekMessages();
+    }catch(e){      
+      $scope.chekMessages();
+    }
 
+    }, function(){
+      //do sms an error
+  });
+
+}
+$scope.chekMessages()
+
+/*проверяем метку времени на сервере, если не совпадает => файл изменен обновляем*/
+$scope.chekAnswers = function(){
+  getRequests.getAnswers($scope.timestamp.answers).then(function(responce){
+    /*север периодически отдает ошибку о таймаут запросса*/
+      try{
+        $scope.answers = JSON.parse(responce.data.slice(0, -10));
+        $scope.timestamp.answers = responce.data.substr(-10);  
+        $scope.chekAnswers($scope.timestamp.answers);
+      }catch(e){        
+        $scope.chekMessages();
+      }
+
+
+      }, function(){
+        //do sms an error
+  });
+} 
+$scope.chekAnswers()
 	
+
   $scope.sendNewMessage = function($event , type){
 
     var chek = validateForm.validateMessAnsw($event) //return false if invalid or mess/answ obj data
@@ -24,8 +64,8 @@ app.controller('GuestbookController', ['$scope', 'authorizationFactory', '$http'
 
     if (type == "new-mess") {
     	var messagesId= ($scope.messages[$scope.messages.length-1].id +1);
-
-  		postRequests.post({"id": messagesId, "userId": 0, "title": chek.titleText, "mess": chek.messageText})
+      
+  		postRequests.post({"id": messagesId, "userId": authorizationFactory.currentUser().id, "title": chek.titleText, "mess": chek.messageText})
   			.success(function(data, status, headers, config){
 
   			$scope.messages = data;
@@ -39,8 +79,8 @@ app.controller('GuestbookController', ['$scope', 'authorizationFactory', '$http'
     }else if(type == "new-answer"){
     	var answerId = $scope.answers[$scope.answers.length-1].id +1;
     	var messId   = chek.form.parent().prev(".message").attr("data-message-id");
-
-  		postRequests.post({"id": answerId, "messId": messId, "userId": 0, "title": chek.titleText, "mess": chek.messageText})
+      
+  		postRequests.post({"id": answerId, "messId": messId, "userId": authorizationFactory.currentUser().id, "title": chek.titleText, "mess": chek.messageText})
   			.success(function(data, status, headers, config){
 
         $scope.answers = data; 
