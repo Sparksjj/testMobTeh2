@@ -20,7 +20,8 @@ $scope.chekMessages = function(){
   getRequests.getMessages($scope.timestamp.messages).then(function(responce){
     /*север периодически отдает текст ошибки о таймауте запросса*/
     try{    
-      $scope.messages = JSON.parse(responce.data.slice(0, -10)); 
+      var ss = responce.data.slice(1, -10);
+      $scope.messages = JSON.parse(ss); 
       $scope.timestamp.messages = responce.data.substr(-10);
       $scope.chekMessages();
     }catch(e){      
@@ -39,7 +40,8 @@ $scope.chekAnswers = function(){
   getRequests.getAnswers($scope.timestamp.answers).then(function(responce){
     /*север периодически отдает ошибку о таймаут запросса*/
       try{
-        $scope.answers = JSON.parse(responce.data.slice(0, -10));
+        var ss = responce.data.slice(1, -10);
+        $scope.answers = JSON.parse(ss);
         $scope.timestamp.answers = responce.data.substr(-10);  
         $scope.chekAnswers($scope.timestamp.answers);
       }catch(e){        

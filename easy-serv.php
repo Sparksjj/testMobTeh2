@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $answerJson = file_get_contents('php://input');
 $answer = json_decode($answerJson, true);
 
@@ -6,12 +6,14 @@ if (isset($_GET['email']) && isset($_GET['password']) && $_GET['email']!="undefi
 	
 	$file = 'data/users.json';
     $users = file_get_contents($file);
-    $users = substr($users, 7, -2);
+
+    $users = substr($users, 5, -2);
+
     $users_arr = explode("},{", $users);
- 
+    
     foreach ($users_arr as $value) {
     	if( strripos($value, '"email":"'.$_GET['email'].'"') !==false && strripos($value, '"password":"'.$_GET['password'].'"') !==false){
-			$value = json_encode('{'.$value.'}');
+			
 			echo $value; die();
     	}
     }

@@ -5,8 +5,9 @@ function($scope, authorizationFactory, validateSignIn, $rootScope){
     password: ""
   } 
 
-
-
+  if (localStorage.currentUser == "") {
+   authorizationFactory.logOut();   
+  };
 
 
   $scope.loginClick = function($event) {
