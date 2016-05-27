@@ -12,6 +12,8 @@
 #chek-user span{
 	color: #fff;
 }
+#log-in{
+}
 #messages-wrapper form{
 	display: none;
 }
@@ -19,17 +21,21 @@
 	text-align: left;
 
 }
+#messages-wrapper .message-wrapper{
+	clear: both;
+
+}
 #messages-wrapper p{
 	text-align: left;
 }
 
 #messages-wrapper > div.message-wrapper{
-	border-bottom: 1px solid #A7A29C;
+	border-top: 1px solid #A7A29C;
 	clear: both;
 }
 
-#messages-wrapper > div.message-wrapper:last-child{
-	border-bottom: none;
+#messages-wrapper > div.message-wrapper:first-child{
+	border-top: none;
 }
 
 #messages-wrapper > div.message-wrapper div.message:last-child{
@@ -52,4 +58,8 @@
 
 #messages-wrapper > .message-wrapper .message-head img{
 	width: 50px;
+}
+
+#toggle-new-message, .log-in-message{
+	margin-bottom: 10px;
 }
