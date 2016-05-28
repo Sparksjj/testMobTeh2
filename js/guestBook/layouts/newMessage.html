@@ -11,4 +11,5 @@
 </form>
 
 <button type="button" class="btn btn-default pull-right" ng-click="showForm($event)" id="toggle-new-message" ng-if="isSignedIn()">Новое сообщение</button>
-<a href="#" class="log-in-message pull-right" data-toggle="modal" data-target="#log-in" ng-if="!isSignedIn()" style="cursor: pointer">Войдите в систему, чтобы оставить отзыв</a>
+
+<div class="log-in-message pull-right" data-toggle="modal" data-target="#log-in" ng-if="!isSignedIn()">Войдите в систему, чтобы оставить отзыв</div>
