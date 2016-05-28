@@ -67,10 +67,6 @@
 	border-top: none;
 }
 
-#messages-wrapper > div.message-wrapper div.message:last-child{
-	margin: 20px 0 0 10%;
-}
-
 
 #messages-wrapper > .message-wrapper{
 	margin: 5px 0 0 10px;
@@ -117,4 +113,13 @@
 #messages-wrapper .answer h4{
 	text-align: right;
 	margin-right: 10%;
+}
+
+form div.error{
+	color: #a94442;
+	margin-left: 5%;
+}
+
+new-message-form div.form-group{
+	margin-top: 5px;
 }

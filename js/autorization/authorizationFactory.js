@@ -53,12 +53,21 @@ app.factory('authorizationFactory',['$userProvider', '$http', 'validateSignIn', 
       return $userProvider.getUser();
     }
 
+    var sayHi = function(){
+      if (currentUser()) {
+        return 'Добро пожаловать ' + currentUser().email;
+      }else{
+        return "";
+      }      
+    }
+
     return {
       login:        login,
       logOut:       logOut,
       isAdmin:      isAdmin,
       isSignedIn:   isSignedIn,
-      currentUser:  currentUser
+      currentUser:  currentUser,
+      sayHi:        sayHi
     }
 
 }]);

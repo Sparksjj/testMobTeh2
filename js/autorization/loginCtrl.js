@@ -21,7 +21,7 @@ function($scope, authorizationFactory, validateSignIn, $rootScope){
   $scope.isAdmin = authorizationFactory.isAdmin;
   $scope.isSignedIn = authorizationFactory.isSignedIn;
   $scope.currentUser = authorizationFactory.currentUser();
-  $scope.sayHi = 'Добро пожаловать ' + $scope.currentUser.email;
+  $scope.hiMessage = authorizationFactory.sayHi();
 
 /*событие при успешной авторизации*/
   $rootScope.$on('rootScope.signInSuccess', function() {
@@ -35,7 +35,7 @@ function($scope, authorizationFactory, validateSignIn, $rootScope){
       /*clear modal window and add hi message*/
       $scope.currentUser = authorizationFactory.currentUser();
       $('button.close').trigger('click');
-      $scope.sayHi = 'Добро пожаловать ' + $scope.currentUser.email;
+      $scope.hiMessage = authorizationFactory.sayHi();
   });
 
 }]);
