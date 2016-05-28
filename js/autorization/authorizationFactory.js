@@ -25,10 +25,11 @@ app.factory('authorizationFactory',['$userProvider', '$http', 'validateSignIn', 
     }
     
     var logOut = function(){
-      $userProvider.setUser({});
+      localStorage.removeItem('currentUser');
     }
 
     var isAdmin = function(){
+
       var user = $userProvider.getUser()
 
       if(user){
@@ -42,11 +43,12 @@ app.factory('authorizationFactory',['$userProvider', '$http', 'validateSignIn', 
 
     var isSignedIn = function(){
    
-      if(!$.isEmptyObject($userProvider.getUser())){
+      if( localStorage.getItem('currentUser') ){
         return true;
       }
       return false;
     }
+    
     var currentUser = function(){
       return $userProvider.getUser();
     }

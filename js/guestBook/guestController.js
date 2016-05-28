@@ -64,7 +64,7 @@ $scope.chekAnswers()
       return
     };
 
-    if (type == "new-mess") {
+    if (type == "new-mess" && authorizationFactory.currentUser()) {
     	var messagesId= ($scope.messages[$scope.messages.length-1].id +1);
       
   		postRequests.post({"id": messagesId, "userId": authorizationFactory.currentUser().id, "title": chek.titleText, "mess": chek.messageText})
@@ -78,7 +78,7 @@ $scope.chekAnswers()
 
   		})
 
-    }else if(type == "new-answer"){
+    }else if(type == "new-answer" && authorizationFactory.currentUser()){
     	var answerId = $scope.answers[$scope.answers.length-1].id +1;
     	var messId   = chek.form.parent().prev(".message").attr("data-message-id");
       

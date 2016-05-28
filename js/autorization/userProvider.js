@@ -6,16 +6,19 @@ app.factory('$userProvider', function(){
   };
 
   var setUser = function(u){
-    localStorage.currentUser = angular.toJson(u);
+    localStorage.setItem('currentUser', angular.toJson(u));
   }
 
   var getUser = function(){
-    return JSON.parse(localStorage.currentUser)
+    if (localStorage.getItem('currentUser')) {
+      return JSON.parse(localStorage.getItem('currentUser'))
+    }
+    return false;
   }
  
   return {
     getUser: getUser,
     setUser: setUser,
-    rolesEnum: rolesEnum
+    rolesEnum: rolesEnum,
   }
 });

@@ -1,30 +1,59 @@
+
+/* header */
+#chek-user{
+	background-color: #4B5658;
+	padding: 20px 20px 20px 0;
+	min-width: 320px;
+}
+
+#chek-user span{
+	color: #fff;
+}
+
+/* messages */
 #messages-wrapper{
-	margin-top: 20px;
+	margin: 20px auto;
 	min-width: 320px;
 	background-color: #ECE9E4;
 	overflow: hidden;
 	margin-top: 0;
+	color: #4B5658;
 }
-#chek-user{
+#messages-wrapper .pagination>.active>a{
 	background-color: #4B5658;
-	padding: 20px 20px 20px 0;
-}
-#chek-user span{
+	border-color: #4B5658;
 	color: #fff;
 }
-#log-in{
+#messages-wrapper .pagination>li>a{
+	color: #4B5658;
 }
+
+
+
+#messages-wrapper h1{
+	margin-left: 10%;
+}
+
+/* message/answer forms */
 #messages-wrapper form{
 	display: none;
 }
+
 #messages-wrapper .message-wrapper form{
 	text-align: left;
-
 }
+
+
+/* message */
 #messages-wrapper .message-wrapper{
 	clear: both;
-
+	position: relative;
 }
+#messages-wrapper .message-wrapper .user-message{
+	line-height: 50px;
+	margin-left: 60px;
+}
+
 #messages-wrapper p{
 	text-align: left;
 }
@@ -44,7 +73,7 @@
 
 
 #messages-wrapper > .message-wrapper{
-	margin: 20px 0 0 10px;
+	margin: 5px 0 0 10px;
 	padding: 10px 5px;
 }
 
@@ -54,12 +83,29 @@
 
 #messages-wrapper > .message-wrapper .message-head img{
 	width: 50px;
+	 border: .1px solid rgba(75, 86, 88, .4); 
+	box-shadow:   0 1px 4px rgba(75, 86, 88, .6);
 }
 
-#messages-wrapper > .message-wrapper .message-head img{
-	width: 50px;
-}
 
 #toggle-new-message, .log-in-message{
 	margin-bottom: 10px;
+}
+
+/* answer */
+#messages-wrapper .answer{
+	border: .1px solid rgba(75, 86, 88, .1); 
+	box-shadow:
+   0 1px 4px rgba(75, 86, 88, .2),
+   -23px 0 20px -23px rgba(75, 86, 88, .8),
+   23px 0 20px -23px rgba(75, 86, 88, .8),
+   0 0 20px rgba(75, 86, 88, .1) inset;
+   padding: 5px;
+   margin-left: 5%;
+   overflow: hidden;
+}
+
+#messages-wrapper .answer h4{
+	text-align: right;
+	margin-right: 10%;
 }

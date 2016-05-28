@@ -5,11 +5,6 @@ function($scope, authorizationFactory, validateSignIn, $rootScope){
     password: ""
   } 
 
-  if (localStorage.currentUser == "") {
-   authorizationFactory.logOut();   
-  };
-
-
   $scope.loginClick = function($event) {
 
     if(!validateSignIn.chekUserInput($event, $scope.formInfo.email, $scope.formInfo.password, "заполните пустые поля")){
